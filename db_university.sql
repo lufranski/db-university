@@ -1,3 +1,5 @@
+-- 19/01/2023
+
 -- 1. Selezionare tutti gli studenti nati nel 1990
 
 SELECT *
