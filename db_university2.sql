@@ -76,3 +76,15 @@ ORDER BY degrees.id, courses.name;
 
 -- 2. Selezionare tutti i docenti che insegnano nel Dipartimento di Matematica (Query result: 54)
 
+SELECT teachers.id, teachers.name, teachers.surname, departments.name
+FROM departments
+    JOIN degrees
+        ON departments.id = degrees.department_id
+    JOIN courses
+        ON degrees.id = courses.degree_id
+    JOIN course_teacher
+        ON courses.id = course_teacher.course_id
+    JOIN teachers
+        ON course_teacher.teacher_id = teachers.id
+ WHERE departments.id = 5
+ GROUP BY teachers.id;
