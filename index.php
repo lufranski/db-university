@@ -21,7 +21,7 @@
     echo "<h2>Connection ok</h2>";
 
     $sql = "
-    SELECT *
+    SELECT students.name, students.surname, students.date_of_birth, students.enrolment_date, students.email, degrees.name AS `degrees.name`
     FROM students
         INNER JOIN degrees
             ON students.degree_id = degrees.id;
@@ -31,10 +31,11 @@
     if ($result && $result->num_rows > 0) {
         // output data of each row
         while($row = $result->fetch_assoc()) {
-            echo "<div><h2>" . $row['students.name'] .' '. $row['students.surname'] . "</h2>"
-            . $row['degrees.name']
-            . $row['students.date_of_birth'] . "<br>" . $row['students.enrolment_date'] . "<br>" . $row['students.email']
+            echo "<div><h2>" . $row['name'] .' '. $row['surname'] . "</h2>"
+            . $row['degrees.name'] . "<br>"
+            . $row['date_of_birth'] . "<br>" . $row['enrolment_date'] . "<br>" . $row['email']
             . "</div>";
+
     }
     } elseif ($result) {
         echo "0 results";
