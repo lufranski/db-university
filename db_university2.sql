@@ -91,7 +91,7 @@ FROM departments
 
 --  3. Selezionare per ogni studente quanti tentativi d'esame ha sostenuto per superare ciascuno dei suoi esami
 
-SELECT students.name, students.surname, courses.name, COUNT(exam_student.vote) 
+SELECT students.name, students.surname, courses.name, COUNT(exam_student.vote), MAX(exam_student.vote) AS 'max_vote' 
 FROM students 
     JOIN exam_student 
         ON students.id = exam_student.student_id 
@@ -99,5 +99,5 @@ FROM students
         ON exam_student.exam_id = exams.id
     JOIN courses 
         ON exams.course_id = courses.id
-WHERE exam_student.vote < 18
-GROUP BY students.id, courses.id, exam_student.student_id;
+GROUP BY students.id, courses.id, exam_student.student_id
+HAVING max_vote >= 18;
